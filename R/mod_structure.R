@@ -44,24 +44,9 @@ mod_structure_ui <- function(id){
                                    #shinydashboard::menuSubItem('Upload files',
                                     #           tabName = 'upload',
                                     #           icon = icon('upload')),
-                                   shinydashboard::menuItem('Genotypic module',
-                                            tabName = 'genotypic',
-                                            icon = icon('dna'),
-                                            shinydashboard::menuSubItem('Traditional methods',
-                                                        tabName = 'genotypic1'),
-                                            shinydashboard::menuSubItem('Distance matrix',
-                                                        tabName = 'genotypic2'),
-                                            shinydashboard::menuSubItem('PCA',
-                                                        tabName = 'genotypic3'),
-                                            shinydashboard::menuSubItem('DPCA',
-                                                        tabName = 'genotypic4'),
-                                            shinydashboard:: menuSubItem('Statistics',
-                                                        tabName = 'genotypic5'),
-                                            shinydashboard::menuSubItem('Statistics per cluster',
-                                                        tabName = 'genotypic6'),
-                                            shinydashboard::menuSubItem('Genetic divergence',
-                                                        tabName = 'genotypic7')
-                                   ),
+                                   shinydashboard::menuSubItem('Genotypic module',
+                                            tabName = 'genotypic1',
+                                            icon = icon('dna')),
                                    shinydashboard::menuSubItem('Phenotypic data',
                                                tabName = 'phenotypic',
                                                icon = icon('leaf')),
@@ -86,18 +71,9 @@ mod_structure_ui <- function(id){
                                    shinydashboard::menuSubItem('CPS',
                                                                tabName = 'cps',
                                                                icon = icon('bell')),
-                                   shinydashboard::menuItem('LFMM',
-                                                            tabName = 'LFMM',
-                                                            icon = icon('alt'),
-                                                            shinydashboard::menuSubItem('LFMM var',
-                                                                                        tabName = 'lfmm',
-                                                                                        icon = icon('coins')),
-                                                            shinydashboard::menuSubItem('LFMM FDR',
-                                                                                        tabName = 'lfmm1',
-                                                                                        icon = icon('coins')),
-                                                            shinydashboard::menuSubItem('LFMM SNP',
-                                                                                        tabName = 'lfmm2',
-                                                                                        icon = icon('coins')))
+                                   shinydashboard::menuSubItem('LFMM',
+                                                              tabName = 'lfmm',
+                                                              icon = icon('brain'))
                                    ),
           shinydashboard::menuItem('Team',
                                    tabName = 'team',
@@ -127,42 +103,6 @@ mod_structure_ui <- function(id){
             tabName = 'genotypic1',
             fluidPage(
               mod_genotypic_ui("genotypic_1")
-            )
-          ),
-          shinydashboard::tabItem(
-            tabName = 'genotypic2',
-            fluidPage(
-              mod_genotypic1_ui("genotypic1_1")
-            )
-          ),
-          shinydashboard::tabItem(
-            tabName = 'genotypic3',
-            fluidPage(
-              mod_genotypic2_ui("genotypic2_1")
-            )
-          ),
-          shinydashboard::tabItem(
-            tabName = 'genotypic4',
-            fluidPage(
-              mod_genotypic3_ui("genotypic3_1")
-            )
-          ),
-          shinydashboard::tabItem(
-            tabName = 'genotypic5',
-            fluidPage(
-              mod_genotypic4_ui("genotypic4_1")
-            )
-          ),
-          shinydashboard::tabItem(
-            tabName = 'genotypic6',
-            fluidPage(
-              mod_genotypic5_ui("genotypic5_1")
-            )
-          ),
-          shinydashboard::tabItem(
-            tabName = 'genotypic7',
-            fluidPage(
-              mod_genotypic6_ui("genotypic6_1")
             )
           ),
           shinydashboard::tabItem(
@@ -205,18 +145,6 @@ mod_structure_ui <- function(id){
             tabName = 'lfmm',
             fluidPage(
               mod_lfmm_ui("lfmm_1")
-            )
-          ),
-          shinydashboard::tabItem(
-            tabName = 'lfmm1',
-            fluidPage(
-              mod_lfmm1_ui("lfmm1_1")
-            )
-          ),
-          shinydashboard::tabItem(
-            tabName = 'lfmm2',
-            fluidPage(
-              mod_lfmm2_ui("lfmm2_1")
             )
           )
         )

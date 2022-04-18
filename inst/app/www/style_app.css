@@ -93,3 +93,14 @@ body {
   width: 50%;
 }
 
+.tabbable > .nav > li > a {
+  background-color: white;
+  color:black
+
+}
+.tabbable > .nav > li[class=active] > a {
+  background-color: black;
+  color:white
+
+}
+
