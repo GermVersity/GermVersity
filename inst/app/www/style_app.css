@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300&display=swap');
+
+* {
+  font-family: 'Outfit', sans-serif;
+}
+
+body {
+  font-family: "DejaVu Sans Mono";
+}
+
+.tabbable > .nav > li > a {background-color: aqua;  color:black}
+
+.navbar {
+  background: #B3C532;
+  color: black;
+  border-radius: 5px;
+}
+.body {
+  padding-top: 100px;
+  font-family: 'Brush Script MT', cursive;
+}
+
+.fecha,
+.title {
+  text-align: center;
+}
+
+.texto_inicial {
+  font-size: 15px;
+  text-align: justify;
+}
+
+.images {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.col-sm-4 {
+  position: stick;
+}
+
+.container {
+    position: relative;
+    top: 0; bottom: 0; left: 0; right: 0;
+    margin: auto;
+}
+
+.title_i {
+  text-align: center;
+}
+
+.Juan,
+.Joaquin,
+.Andres,
+.Maria,
+.Diego,
+.Marlon,
+.Luis,
+.Paula,
+.Kevin {
+  width: 600px;
+  height: 100px;
+  display: flex;
+  justify-content: space-around;
+  background: #B3C532;
+  border-radius: 20px;
+}
+
+.Joaquin img,
+.Maria img,
+.Kevin img {
+  height: 80px;
+}
+
+.Marlon img {
+  width: 100px;
+}
+
+.footer {
+  text-align: center;
+}
+
+@media (min-width: 700px){
+  .container {
+    margin-right: 50px;
+  }
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.tabbable > .nav > li > a {
+  background-color: white;
+  color:black
+
+}
+.tabbable > .nav > li[class=active] > a {
+  background-color: black;
+  color:white
+
+}
+
