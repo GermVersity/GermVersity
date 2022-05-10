@@ -1,7 +1,7 @@
 # GermVersity
-<div style="text-align:center">
+<p align="center">
 <img src = "https://raw.githubusercontent.com/GermVersity/GermVersity/main/inst/app/www/Logo.png" alt = "drawing" align = "center" width = "500" height = "500"/>
-</div>
+</p>
 
 ## Installation from GitHub
 
