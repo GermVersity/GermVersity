@@ -1,8 +1,6 @@
 # GermVersity
 
-<a href=''>
-  <img src = 'https://raw.githubusercontent.com/GermVersity/GermVersity/main/inst/app/www/Logo.png', alt = 'drawing',align = 'center', width = "50", height = "50">  
-</a>
+<img src = "https://raw.githubusercontent.com/GermVersity/GermVersity/main/inst/app/www/Logo.png", alt = "drawing", align = "center", width = "50", height = "50">
 
 
 ## Installation from Github
