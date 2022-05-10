@@ -1,7 +1,7 @@
 # GermVersity
-
+<div style="text-align:center">
 <img src = "https://raw.githubusercontent.com/GermVersity/GermVersity/main/inst/app/www/Logo.png" alt = "drawing" align = "center" width = "500" height = "500"/>
-
+</div>
 
 ## Installation from GitHub
 
@@ -28,4 +28,10 @@ if (!require("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 
 BiocManager::install("qvalue")
+```
+
+* Third, install GermVersity
+
+```
+devtools::install_github('GermVersity/GermVersity')
 ```
