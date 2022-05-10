@@ -1,6 +1,6 @@
 # GermVersity
 
-<img src = "https://raw.githubusercontent.com/GermVersity/GermVersity/main/inst/app/www/Logo.png" alt = "drawing" align = "center" width = "400" height = "400"/>
+<img src = "https://raw.githubusercontent.com/GermVersity/GermVersity/main/inst/app/www/Logo.png" alt = "drawing" align = "center" width = "500" height = "500"/>
 
 
 ## Installation from Github
@@ -22,4 +22,10 @@ if (!require("BiocManager", quietly = TRUE))
   install.packages("BiocManager")
 
 BiocManager::install("LEA")
+```
+```
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("qvalue")
 ```
