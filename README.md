@@ -1,7 +1,7 @@
 # GermVersity
 
 <a href=''>
-  <img src = 'https://raw.githubusercontent.com/GermVersity/GermVersity/main/inst/app/www/Logo.png', align = 'center', width = '50px', height = '50px'>  
+  <img src = 'https://raw.githubusercontent.com/GermVersity/GermVersity/main/inst/app/www/Logo.png', alt = 'drawing',align = 'center', width = '200', height = '200'>  
 </a>
 
 
