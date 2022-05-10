@@ -3,7 +3,7 @@
 <img src = "https://raw.githubusercontent.com/GermVersity/GermVersity/main/inst/app/www/Logo.png" alt = "drawing" align = "center" width = "500" height = "500"/>
 
 
-## Installation from Github
+## Installation from GitHub
 
 * First install the next libraries from Github
 
