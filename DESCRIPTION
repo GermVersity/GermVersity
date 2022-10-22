@@ -1,6 +1,6 @@
 Package: GermVersity
 Title: GUI for phenotypic and genotypic analysis 
-Version: 1.8.1
+Version: 3.0.1
 Authors@R: 
     c(
     person(
