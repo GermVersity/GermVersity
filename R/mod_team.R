@@ -10,59 +10,97 @@
 mod_team_ui <- function(id){
   ns <- NS(id)
   tagList(
-    sidebarLayout(position = "right",
-                  sidebarPanel(
-                    tags$h5(class="title",
-                            "Versión 1.8"),
-                    tags$p(class = "footer",
-                           "© Copyright GermVersity. All rights reserved")
-                  ),
-                  mainPanel(
-                    tags$div(
-                      class = "container1",
-                      tags$h1(class = "title_i",
-                              "Members GermVersity"),
-                      tags$div(class = "container",
-                               tags$div(class = "Juan",
-                                        tags$h3("Juan Camilo Henao-Rojas"),
-                                        tags$img(src = "https://alimentro.agrosavia.co/Content/imagenes/logo-agrosavia.png", width = "200px")),
-                               tags$h1(),
-                               tags$div(class = "Joaquin",
-                                        tags$h3("Joaquin Guillermo-Ramirez"),
-                                        tags$img(src = "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Logotipo_de_la_Universidad_Nacional_de_Colombia.svg/1200px-Logotipo_de_la_Universidad_Nacional_de_Colombia.svg.png", width = "200px")),
-                               tags$h1(),
-                               tags$div(class = "Andres",
-                                        tags$h3("Andrés Cortés-Vera"),
-                                        tags$img(src = "https://alimentro.agrosavia.co/Content/imagenes/logo-agrosavia.png", width = "200px")),
-                               tags$h1(),
-                               tags$div(class = "Maria",
-                                        tags$h3("Maria Isabel Chacon-Sanchez"),
-                                        tags$img(src = "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Logotipo_de_la_Universidad_Nacional_de_Colombia.svg/1200px-Logotipo_de_la_Universidad_Nacional_de_Colombia.svg.png", width = "200px")),
-                               tags$h1(),
-                               tags$div(class = "Diego",
-                                        tags$h3("Diego Felipe Conejo"),
-                                        tags$img(src = "https://climaloca.org/wp-content/uploads/alliance_logo_standard_cropped.png", width = "200px")),
-                               tags$h1(),
-                               tags$div(class = "Marlon",
-                                        tags$h3("Marlon E. Cobos"),
-                                        tags$img(src = "https://upload.wikimedia.org/wikipedia/en/thumb/f/f4/Kansas_Jayhawks_logo.svg/1200px-Kansas_Jayhawks_logo.svg.png", width = "200px")),
-                               tags$h1(),
-                               tags$div(class = "Luis",
-                                        tags$h3("Luis Felipe Lopez"),
-                                        tags$img(src = "https://alimentro.agrosavia.co/Content/imagenes/logo-agrosavia.png", width = "200px")),
-                               tags$h1(),
-                               tags$div(class = "Paula",
-                                        tags$h3("Paula Helena Reyes Herrera"),
-                                        tags$img(src = "https://alimentro.agrosavia.co/Content/imagenes/logo-agrosavia.png", width = "200px")),
-                               tags$h1(),
-                               tags$div(class = "Kevin",
-                                        tags$h3("Kevin Steven Quiroga Benavides"),
-                                        tags$img(src = "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Logotipo_de_la_Universidad_Nacional_de_Colombia.svg/1200px-Logotipo_de_la_Universidad_Nacional_de_Colombia.svg.png", width = "200px"))
+    fluidPage(
+      tags$h1(class = "title", 'Miembros del equipo'),
+      tags$br(),
+      tags$div(class = "cardsteam",
+               tags$div(class = "card",
+                        tags$img(src = "www/Joaquin.jpg", width = "100px"),
+                        tags$div(class = "containerteam",
+                                 tags$h4(tags$b('Joaquin Guillermo Ramirez Gil')),
+                                 tags$img(src = 'www/unalblack.png', width = '100px'),
+                                 tags$h6("ORCID: https://orcid.org/0000-0002-0162-3598")
+                        )
+               ),
+               tags$div(class = "card",
+                        tags$img(src = "www/Camilo.jpg", width = "100px"),
+                        tags$div(class = "containerteam",
+                                 tags$h4(tags$b('Juan Camilo Henao-Rojas')),
+                                 tags$img(src = 'www/agrosavia.png', width = '100px'),
+                                 tags$h6("ORCID: https://orcid.org/0000-0003-0007-6809")
+                        )
+               ),
+               tags$div(class = "card",
+                        tags$img(src = "www/Andres.jpg", width = "100px"),
+                        tags$div(class = "containerteam",
+                                 tags$h4(tags$b('Andrés Cortés-Vera')),
+                                 tags$img(src = 'www/agrosavia.png', width = '100px'),
+                                 tags$h6("ORCID: https://orcid.org/0000-0003-4178-0675")
+                        )
+               )
 
-                      )
-                    )
-
-                  )
+      ),
+      tags$br(),
+      tags$br(),
+      tags$div(class = "cardsteam",
+               tags$div(class = "card",
+                        tags$img(src = "www/Isabel.jpeg", width = "100px"),
+                        tags$div(class = "containerteam",
+                                 tags$h4(tags$b('Maria Isabel Chacon-Sanchez')),
+                                 tags$img(src = 'www/unalblack.png', width = '100px'),
+                                 tags$h6("ORCID: https://orcid.org/0000-0001-7781-6129")
+                        )
+               ),
+               tags$div(class = "card",
+                        tags$img(src = "www/Diego.jpg", width = "100px"),
+                        tags$div(class = "containerteam",
+                                 tags$h4(tags$b('Diego Felipe Conejo')),
+                                 tags$img(src = 'www/ciat.png', width = '100px'),
+                                 tags$h6("ORCID: https://orcid.org/0000-0001-7129-4016")
+                        )
+               ),
+               tags$div(class = "card",
+                        tags$img(src = "www/Marlon.jpeg", width = "100px"),
+                        tags$div(class = "containerteam",
+                                 tags$h4(tags$b('Marlon E. Cobos')),
+                                 tags$img(src = 'www/kansas.png', width = '100px'),
+                                 tags$h6("ORCID: https://orcid.org/0000-0002-2611-1767")
+                        )
+               )
+      ),
+      tags$br(),
+      tags$br(),
+      tags$div(class = "cardsteam",
+               tags$div(class = "card",
+                        tags$img(src = "www/Luis.jpeg", width = "100px"),
+                        tags$div(class = "containerteam",
+                                 tags$h4(tags$b('Luis Felipe Lopez')),
+                                 tags$img(src = 'www/agrosavia.png', width = '100px'),
+                                 tags$h6("ORCID: https://orcid.org/0000-0002-4967-6955")
+                        )
+               ),
+               tags$div(class = "card",
+                        tags$img(src = "www/Paula.jpg", width = "100px"),
+                        tags$div(class = "containerteam",
+                                 tags$h4(tags$b('Paula Helena Reyes Herrera')),
+                                 tags$img(src = 'www/agrosavia.png', width = '100px'),
+                                 tags$h6("ORCID:")
+                        )
+               ),
+               tags$div(class = "card",
+                        tags$img(src = "www/Kevin.jpg", width = "100px"),
+                        tags$div(class = "containerteam",
+                                 tags$h4(tags$b('Kevin Steven Quiroga Benavides')),
+                                 tags$img(src = 'www/unalblack.png', width = '100px'),
+                                 tags$h6("ORCID: https://orcid.org/0000-0002-2748-942X")
+                        )
+               )
+      ),
+      tags$br(),
+      tags$div(class = "footer",
+               tags$div(class = 'footer_1',
+                        tags$h5(class="title", "Versión 3.0.1"),
+                        tags$p(class = "footer_2", "© Copyright GermVersity. All rights reserved")))
     )
   )
 }

@@ -40,44 +40,31 @@ body {
   position: stick;
 }
 
-.container {
-    position: relative;
-    top: 0; bottom: 0; left: 0; right: 0;
-    margin: auto;
-}
-
-.title_i {
-  text-align: center;
-}
-
-.Juan,
-.Joaquin,
-.Andres,
-.Maria,
-.Diego,
-.Marlon,
-.Luis,
-.Paula,
-.Kevin {
-  width: 600px;
-  height: 100px;
+.cardsteam {
   display: flex;
   justify-content: space-around;
-  background: #B3C532;
-  border-radius: 20px;
 }
 
-.Joaquin img,
-.Maria img,
-.Kevin img {
-  height: 80px;
+.card {
+  background-color: #CBC4C2;
+  width: 300px;
+  border-radius: 15px;
 }
 
-.Marlon img {
-  width: 100px;
+.card img {
+  border-radius: 50%;
+  margin-top: 5px;
+  width: 120px;
 }
 
-.footer {
+.card .containerteam img {
+  border-radius: 5px;
+  margin-top: 0;
+}
+
+
+.footer,
+.cardsteam {
   text-align: center;
 }
 

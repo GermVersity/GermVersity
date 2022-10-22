@@ -501,8 +501,9 @@ mod_genotypic_server <- function(id){
 
     })
 
-    output$plot_d1 <- renderPlot({
+    ############### DPCA
 
+    output$plotDPCA <- renderPlot({
       tryCatch(
         {
           LimaBeanGBS <- vcfR::read.vcfR(input$filevcf$datapath)
@@ -525,18 +526,98 @@ mod_genotypic_server <- function(id){
       require("adegenet")
 
       LimaBeanData2 <- vcfR::vcfR2genind(LimaBeanGBS, pop= Genepool, NA.char= "NA")
-
-      diversity <- summary(LimaBeanData2)#we use the genind object created above
-      print(class(diversity))
-      plot(diversity['Hobs'][[1]],
-           xlab="loci number",
-           ylab="Hobs")
-      #As expected for a selfer as Lima bean, in most loci the number of
-      #heterosygous individuals is low
-
+      grp <- find.clusters(LimaBeanData2, max.n.clust = 30, n.pca = input$npca1, n.clust = input$nclust)
+      dapc <- dapc(LimaBeanData2, grp$grp, n.pca = input$npca, n.da = input$nda)
+      scatter(dapc)
     })
 
-    output$plot_d2 <- renderPlot({
+    output$table1D <- renderDataTable({
+      tryCatch(
+        {
+          LimaBeanGBS <- vcfR::read.vcfR(input$filevcf$datapath)
+        },
+        error = function(e){
+          stop('Upload VCF file') #safeError(e)
+        }
+      )
+
+      tryCatch(
+        {
+          PopData = read.table(input$filetxt$datapath, header = T)
+        },
+        error = function(e){
+          stop('Upload VCF file')
+        }
+      )
+      Genepool <- as.character(PopData$Genepool)
+
+      require("adegenet")
+
+      LimaBeanData2 <- vcfR::vcfR2genind(LimaBeanGBS, pop= Genepool, NA.char= "NA")
+      grp <- find.clusters(LimaBeanData2, max.n.clust = 30, n.pca = input$npca1, n.clust = input$nclust)
+      table(pop(LimaBeanData2), grp$grp)
+    })
+
+    output$plotDPCA2 <- renderPlot({
+      tryCatch(
+        {
+          LimaBeanGBS <- vcfR::read.vcfR(input$filevcf$datapath)
+        },
+        error = function(e){
+          stop('Upload VCF file') #safeError(e)
+        }
+      )
+
+      tryCatch(
+        {
+          PopData = read.table(input$filetxt$datapath, header = T)
+        },
+        error = function(e){
+          stop('Upload VCF file')
+        }
+      )
+      Genepool <- as.character(PopData$Genepool)
+
+      require("adegenet")
+
+      LimaBeanData2 <- vcfR::vcfR2genind(LimaBeanGBS, pop= Genepool, NA.char= "NA")
+      grp <- find.clusters(LimaBeanData2, max.n.clust = 30, n.pca = input$npca1, n.clust = input$nclust)
+      dapc <- dapc(LimaBeanData2, grp$grp, n.pca = input$npca, n.da = input$nda)
+      myCol2 <- c("pink","red","blue","light blue", "green") # to assign colors to each of the five clusters
+
+      scatter(dapc, scree.da=FALSE, bg="white", pch=20,  cell=0, cstar=0, col=myCol2, solid=1.0,
+              cex=3,clab=0, leg=TRUE, posi.leg= "bottomleft", scree.pca=TRUE, posi.pca = "topright", ratio.pca=0.3)
+    })
+
+    output$plotDPCA3 <- renderPlot({
+      tryCatch(
+        {
+          LimaBeanGBS <- vcfR::read.vcfR(input$filevcf$datapath)
+        },
+        error = function(e){
+          stop('Upload VCF file') #safeError(e)
+        }
+      )
+
+      tryCatch(
+        {
+          PopData = read.table(input$filetxt$datapath, header = T)
+        },
+        error = function(e){
+          stop('Upload VCF file')
+        }
+      )
+      Genepool <- as.character(PopData$Genepool)
+
+      require("adegenet")
+
+      LimaBeanData2 <- vcfR::vcfR2genind(LimaBeanGBS, pop= Genepool, NA.char= "NA")
+      grp <- find.clusters(LimaBeanData2, max.n.clust = 30, n.pca = input$npca1, n.clust = input$nclust)
+      dapc <- dapc(LimaBeanData2, grp$grp, n.pca = input$npca, n.da = input$nda)
+      compoplot.dapc(dapc)
+    })
+
+    output$plot_d1 <- renderPlot({
 
       tryCatch(
         {
@@ -549,25 +630,43 @@ mod_genotypic_server <- function(id){
 
       tryCatch(
         {
-          data = read.table(input$filetxt$datapath)
+          PopData = read.table(input$filetxt$datapath, header = T)
         },
         error = function(e){
           stop('Upload VCF file')
         }
       )
-      Genepool <- as.character(data$Genepool)
+      require("adegenet")
+      Genepool <- as.character(PopData$Genepool)
+      LimaBeanData2 <- vcfR::vcfR2genind(LimaBeanGBS, pop= Genepool, NA.char= "NA")
+      diversity <- summary(LimaBeanData2)
+      print(diversity)
+      plot(diversity$Hobs, xlab="loci number", ylab="Hobs", main="Hobs per locus")
+    })
 
-      LimaBeanData2 <- vcfR::vcfR2genind(LimaBeanGBS,
-                                         pop = Genepool,
-                                         NA.char = "NA")
-      diversity <- base::summary(LimaBeanData2)#we use the genind object created above
-      plot(diversity['Hexp'][[1]],
-           xlab="loci number",
-           ylab="Hexp",
-           ylim = c(0,0.6))
-      #A great variation in Hexp is observed. The maximum value for Hexp is 0.5
-      #and it is observed when in a locus both alleles have the same frequency of 0.5.
+    output$plot_d2 <- renderPlot({
+      tryCatch(
+        {
+          LimaBeanGBS <- vcfR::read.vcfR(input$filevcf$datapath)
+        },
+        error = function(e){
+          stop('Upload VCF file') #safeError(e)
+        }
+      )
 
+      tryCatch(
+        {
+          PopData = read.table(input$filetxt$datapath, header = T)
+        },
+        error = function(e){
+          stop('Upload VCF file')
+        }
+      )
+      require("adegenet")
+      Genepool <- as.character(PopData$Genepool)
+      LimaBeanData2 <- vcfR::vcfR2genind(LimaBeanGBS, pop= Genepool, NA.char= "NA")
+      diversity <- summary(LimaBeanData2)
+      plot(diversity$Hexp, xlab="loci number", ylab="Hexp", main="Hexp per locus")
     })
 
     output$plot_d3 <- renderPlot({
@@ -582,24 +681,17 @@ mod_genotypic_server <- function(id){
 
       tryCatch(
         {
-          data = read.table(input$filetxt$datapath)
+          PopData = read.table(input$filetxt$datapath, header = T)
         },
         error = function(e){
           stop('Upload VCF file')
         }
       )
-      Genepool <- as.character(data$Genepool)
-
-      LimaBeanData2 <- vcfR::vcfR2genind(LimaBeanGBS,
-                                         pop = Genepool,
-                                         NA.char = "NA")
-      diversity <- base::summary(LimaBeanData2)#we use the genind object created above
-
-      plot(diversity$Hobs, diversity$Hexp, xlab="Hobs", ylab="Hexp")
-      #This plot shows how Hexp is related to Hobs. For loci in HWE,
-      #Hexp = Hobs. In the plot we observe that in most loci, Hexp is higher
-      #than Hobs, as expected for selfing species as Lima bean.
-
+      require("adegenet")
+      Genepool <- as.character(PopData$Genepool)
+      LimaBeanData2 <- vcfR::vcfR2genind(LimaBeanGBS, pop= Genepool, NA.char= "NA")
+      diversity <- summary(LimaBeanData2)
+      plot(diversity$Hobs, diversity$Hexp, xlab="Hobs", ylab="Hexp", main="Hexp as a function of Hobs per locus")
     })
 
     output$barlett <- renderText({
@@ -614,19 +706,18 @@ mod_genotypic_server <- function(id){
 
       tryCatch(
         {
-          data = read.table(input$filetxt$datapath)
+          data = read.table(input$filetxt$datapath, header = T)
         },
         error = function(e){
           stop('Upload VCF file')
         }
       )
+      require("adegenet")
       Genepool <- as.character(data$Genepool)
-
       LimaBeanData2 <- vcfR::vcfR2genind(LimaBeanGBS,
                                          pop = Genepool,
                                          NA.char = "NA")
-      diversity <- base::summary(LimaBeanData2)#we use the genind object created above
-
+      diversity <- summary(LimaBeanData2)
       bartlett.test(list(diversity$Hobs, diversity$Hexp))
     })
 
@@ -740,6 +831,7 @@ mod_genotypic_server <- function(id){
       LimaBeanPCA <- adegenet::glPca(LimaBeanData3, nf = 3)
       Limapcascores <- as.data.frame(LimaBeanPCA$scores)
       Limapcascores$pop <- adegenet::pop(LimaBeanData3)
+      return(list(Limapcascores, LimaBeanPCA))
     })
 
     output$boxplot1 <- renderPlot({
@@ -751,67 +843,29 @@ mod_genotypic_server <- function(id){
     })
 
     output$summary4 <- renderPrint({
-
       LimaBeanData2 <- data3()
-
       global.Fst.weir_cock <- hierfstat::wc(LimaBeanData2)
-      #to calculate Fis and Fst on one level hierarchy (the populations -
-      #or genepools- grouped within the total population) by the method of Weir and Cockerham (1984).
-
-      # We can see that genetic differentiation among
-      #genepools is high (Fst=0.59), and that deviation from HWE is also high,
-      #with deficit of heterozygous (Fis=0.69).
-
       print(global.Fst.weir_cock)
     })
 
     output$summary5 <- renderPrint({
-
       LimaBeanData2 <- data3()
-
       pairwise.fst.genepools <- hierfstat::genet.dist(LimaBeanData2, method="WC84")
-      # To obtain pariwise Fst values among genepools
-      #We can see that the highest Fst values (highest genetic
-      #differentiation) were observed among genepools Dom_MI vs Dom_AI,
-      #Dom_MI vs Wild_AII and Dom_AI vs wild_AII. The lowest genetic
-      #differentiation was observed among genepools Dom_ADM vs wild MII,
-      #Wild_AI vs Dom_AI (Andean wild ancestor and their domesticated counterpart)
-      #and Wild_MI and Dom_MI (Mesoamerican wild ancestor and their domesticated counterpart).
-
       print(pairwise.fst.genepools)
     })
 
     output$plot1 <- renderPlot({
-
-      Limapcascores <- data2()
-
-      distance = "euclidean" #"euclidean", "maximum", "manhattan", "canberra", "binary", "minkowski"
-      algorithm = "kmeans" #"ward.D2", "single", "complete", "average", "mcquitty", "median", "centroid", "kmeans"
-      index = c("all")
-      res.nbclust <- NbClust::NbClust(as.data.frame(Limapcascores[,-4]), distance = distance,
-                                      min.nc = 4, max.nc = 10,
-                                      method = algorithm, index =index)
-      factoextra::fviz_nbclust(res.nbclust) + theme_minimal()
-      res.nbclust$Best.nc[1,]
+      Limapcascores <- data2()[[1]]
+      factoextra::fviz_nbclust(as.data.frame(Limapcascores[,-4]), FUNcluster = kmeans) +
+        ggplot2::theme_minimal()
     })
 
     output$plot2 <- renderPlot({
-
-      Limapcascores <- data2()
-
-      algorithms =  c("pam","kmeans","clara","diana","agnes") #agglomerative =agnes &hclust "kmeans","clara","diana","agnes","som","sota"
-      # Select the k range
-      k = 4:10
-      # Select the valitadion method: "CE", "GA"
-      validation_method="CE"
-      # run
+      Limapcascores <- data2()[[1]]
+      LimaBeanPCA <- data2()[[2]]
       PVCA <-as.data.frame(Limapcascores[,1:3])
       set.seed(2022)
-      norm1 <- optCluster::optCluster(as.matrix.data.frame(Limapcascores[,-4]), k, clMethods = algorithms,
-                                      rankMethod = validation_method, hierMethod = "ward")
-      summary(norm1)
-
-      putput <- optCluster::optAssign(norm1)
+      putput <- kmeans(x = as.matrix.data.frame(Limapcascores[,-4]), centers = 6, nstart = 4)
       CLUSTER <- as.data.frame(putput$cluster)
       colnames(CLUSTER) <- "CLUSTER"
 
@@ -823,8 +877,8 @@ mod_genotypic_server <- function(id){
 
       my_pal <- c("darkgreen","darkblue", "orangered","darkred","lightslateblue","orange","purple4","darkred","green","red","pink","yellow","black","deeppink4","darkturquoise","khaki3")
       my_fill <- c("darkgreen","darkblue", "orangered","darkred","lightslateblue","orange","purple4","darkred","green","red","pink","yellow","black","deeppink4","darkturquoise","khaki3")
-      p1 <- ggplot2::ggplot(final_cluster_data, aes(x = V1, y = V2,color = CLUSTER))
-      p1 <- p1 + ggplot2::geom_point(size = 3, aes(fill = CLUSTER),alpha =0.5)
+      p1 <- ggplot2::ggplot(final_cluster_data, ggplot2::aes(x = V1, y = V2,color = CLUSTER))
+      p1 <- p1 + ggplot2::geom_point(size = 3, ggplot2::aes(fill = CLUSTER),alpha =0.5)
       p1 <- p1 + ggplot2::geom_hline(yintercept = 0)
       p1 <- p1 + ggplot2::geom_vline(xintercept = 0)
       p1 <- p1 + ggplot2::geom_point(size=3)
@@ -858,20 +912,10 @@ mod_genotypic_server <- function(id){
       LimaBeanData3 <- vcfR::vcfR2genlight(LimaBeanGBS)
       adegenet::ploidy(LimaBeanData3) <- 2
       adegenet::pop(LimaBeanData3) <- Genepool
-      Limapcascores <- data2()
-      algorithms =  c("pam","kmeans","clara","diana","agnes") #agglomerative =agnes &hclust "kmeans","clara","diana","agnes","som","sota"
-      # Select the k range
-      k = 4:10
-      # Select the valitadion method: "CE", "GA"
-      validation_method="CE"
-      # run
+      Limapcascores <- data2()[[1]]
       PVCA <-as.data.frame(Limapcascores[,1:3])
       set.seed(2022)
-      norm1 <- optCluster::optCluster(as.matrix.data.frame(Limapcascores[,-4]), k, clMethods = algorithms,
-                                      rankMethod = validation_method, hierMethod = "ward")
-      summary(norm1)
-
-      putput <- optCluster::optAssign(norm1)
+      putput <- kmeans(x = as.matrix.data.frame(Limapcascores[,-4]), centers = 6, nstart = 4)
       CLUSTER <- as.data.frame(putput$cluster)
       colnames(CLUSTER) <- "CLUSTER"
 
@@ -881,11 +925,11 @@ mod_genotypic_server <- function(id){
       final_cluster_data$CLUSTER <- as.factor(final_cluster_data$CLUSTER)
       colnames(final_cluster_data) <- c("V1","V2","CLUSTER")
       # metodo distancia
+      my_pal <- c("darkgreen","darkblue", "orangered","darkred","lightslateblue","orange","purple4","darkred","green","red","pink","yellow","black","deeppink4","darkturquoise","khaki3")
       adegenet::pop(LimaBeanData3) <- final_cluster_data$CLUSTER
       tree <- poppr::aboot(LimaBeanData3, tree = "upgma", distance = nei.dist, sample = 100, showtree = F, cutoff = 50, quiet = T)
-      # cols <- brewer.pal(n = nPop(gl.rubi), name = "Dark2")
       ape::plot.phylo(tree, cex = 0.3, font = 2, adj = 0, tip.color =  my_pal[adegenet::pop(LimaBeanData3)])
-      nodelabels(tree$node.label, adj = c(1.3, -0.5), frame = "n", cex = 0.3,font = 3, xpd = TRUE)
+      ape::nodelabels(tree$node.label, adj = c(1.3, -0.5), frame = "n", cex = 0.3,font = 3, xpd = TRUE)
       axis(side = 1)
       title(xlab = "Genetic distance (proportion of loci that are different)")
     })

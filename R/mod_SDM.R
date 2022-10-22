@@ -92,22 +92,22 @@ mod_SDM_server <- function(id){
       recordsSpecie <- recordsSpecie[,-1]
 
       # We transform into sf format
-      Lunatus <- recordsSpecie |> sf::st_as_sf(coords = c(1, 2),
+      Lunatus <- recordsSpecie %>% sf::st_as_sf(coords = c(1, 2),
                                                crs = "+proj=longlat +ellps=WGS84
                                       +datum=WGS84 +no_defs +towgs84=0,0,0")
       # Generate a buffer
-      Hull <- Lunatus |>
-        sf::st_union() |>
+      Hull <- Lunatus %>%
+        sf::st_union() %>%
         sf::st_convex_hull()
-      Buffer <- Hull |>
-        sf::st_buffer(dist = 1) |>
+      Buffer <- Hull %>%
+        sf::st_buffer(dist = 1) %>%
         sf::st_as_sf()
 
       Bioclimatic <- raster::getData("worldclim", res = 2.5, var = "bio", path = tempdir())
 
       # Crop layers using the buffer
-      Bioclimatic <- Bioclimatic |>
-        raster::crop(Buffer) |>
+      Bioclimatic <- Bioclimatic %>%
+        raster::crop(Buffer) %>%
         raster::trim()
 
       # Selección del número de background points
@@ -125,7 +125,7 @@ mod_SDM_server <- function(id){
       ## Best Model Prediction
       Models <- Results@results
       Models$ID <- 1:nrow(Models)
-      Models <- Models |>
+      Models <- Models %>%
         dplyr::arrange(AICc)
       BestModels <- Results@models[[Models$ID[1]]]
       Prediction <- raster::predict(Bioclimatic, BestModels, type = "cloglog")
@@ -153,22 +153,22 @@ mod_SDM_server <- function(id){
       recordsSpecie <- recordsSpecie[,-1]
 
       # We transform into sf format
-      Lunatus <- recordsSpecie |> sf::st_as_sf(coords = c(1, 2),
+      Lunatus <- recordsSpecie %>% sf::st_as_sf(coords = c(1, 2),
                                                crs = "+proj=longlat +ellps=WGS84
                                       +datum=WGS84 +no_defs +towgs84=0,0,0")
       # Generate a buffer
-      Hull <- Lunatus |>
-        sf::st_union() |>
+      Hull <- Lunatus %>%
+        sf::st_union() %>%
         sf::st_convex_hull()
-      Buffer <- Hull |>
-        sf::st_buffer(dist = 1) |>
+      Buffer <- Hull %>%
+        sf::st_buffer(dist = 1) %>%
         sf::st_as_sf()
 
       Bioclimatic <- raster::getData("worldclim", res = 2.5, var = "bio", path = tempdir())
 
       # Crop layers using the buffer
-      Bioclimatic <- Bioclimatic |>
-        raster::crop(Buffer) |>
+      Bioclimatic <- Bioclimatic %>%
+        raster::crop(Buffer) %>%
         raster::trim()
 
       # Selección del número de background points
@@ -184,12 +184,12 @@ mod_SDM_server <- function(id){
       ## Best Model Prediction
       Models <- Results@results
       Models$ID <- 1:nrow(Models)
-      Models <- Models |>
+      Models <- Models %>%
         dplyr::arrange(AICc)
       BestModels <- Results@models[[Models$ID[1]]]
       Prediction <- raster::predict(Bioclimatic, BestModels, type = "cloglog")
 
-      gdd_ggplot2 <- Prediction$layer |> as("SpatialPixelsDataFrame") |>
+      gdd_ggplot2 <- Prediction$layer %>% as("SpatialPixelsDataFrame") %>%
         as.data.frame()
 
       # Plotting using ggplot2
@@ -243,22 +243,22 @@ mod_SDM_server <- function(id){
       recordsSpecie <- recordsSpecie[,-1]
 
       # We transform into sf format
-      Lunatus <- recordsSpecie |> sf::st_as_sf(coords = c(1, 2),
+      Lunatus <- recordsSpecie %>% sf::st_as_sf(coords = c(1, 2),
                                                crs = "+proj=longlat +ellps=WGS84
                                       +datum=WGS84 +no_defs +towgs84=0,0,0")
       # Generate a buffer
-      Hull <- Lunatus |>
-        sf::st_union() |>
+      Hull <- Lunatus %>%
+        sf::st_union() %>%
         sf::st_convex_hull()
-      Buffer <- Hull |>
-        sf::st_buffer(dist = 1) |>
+      Buffer <- Hull %>%
+        sf::st_buffer(dist = 1) %>%
         sf::st_as_sf()
 
       Bioclimatic <- raster::getData("worldclim", res = 2.5, var = "bio", path = tempdir())
 
       # Crop layers using the buffer
-      Bioclimatic <- Bioclimatic |>
-        raster::crop(Buffer) |>
+      Bioclimatic <- Bioclimatic %>%
+        raster::crop(Buffer) %>%
         raster::trim()
 
       # Option 1: Extracting Environmental Data from Occurrences Points of Species
@@ -334,8 +334,8 @@ mod_SDM_server <- function(id){
       mapGLM <- 1-mapGLM
 
       # Projections to Data.Frame Format
-      mapGLM.ggplot2 <- mapGLM |>
-        as("SpatialPixelsDataFrame") |>
+      mapGLM.ggplot2 <- mapGLM %>%
+        as("SpatialPixelsDataFrame") %>%
         as.data.frame()
 
       # Plotting using ggplot2

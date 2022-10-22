@@ -96,7 +96,7 @@ mod_phenotypic_server <- function(id){
       # replace data by keeping only those variables that don't have missing data
       data <- Datos[ , !missingcols]
 
-      data |> dplyr::group_by(Races) |> dplyr::summarise(n = dplyr::n())
+      data %>% dplyr::group_by(Races) %>% dplyr::summarise(n = dplyr::n())
 
       # create training and test sets
       inTrain <- caret::createDataPartition(y = data$Races, p = 0.6, list = FALSE)
