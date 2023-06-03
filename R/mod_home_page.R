@@ -33,7 +33,7 @@ mod_home_page_ui <- function(id){
         tags$div(class = "images",
                  tags$img(src = "https://alimentro.agrosavia.co/Content/imagenes/logo-agrosavia.png", width = "230px", height = "50px"),
                  tags$img(src = "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Logotipo_de_la_Universidad_Nacional_de_Colombia.svg/1200px-Logotipo_de_la_Universidad_Nacional_de_Colombia.svg.png", width = "150px", height = "150px"),
-                 tags$img(src = "https://upload.wikimedia.org/wikipedia/en/thumb/f/f4/Kansas_Jayhawks_logo.svg/1200px-Kansas_Jayhawks_logo.svg.png", width = "150px", height = "150px"),
+                 tags$img(src = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Kansas_Jayhawks_1946_logo.svg/1200px-Kansas_Jayhawks_1946_logo.svg.png", width = "150px", height = "150px"),
                  tags$img(src = "https://climaloca.org/wp-content/uploads/alliance_logo_standard_cropped.png", width = "150px",  height = "70px")),
         tags$h1(class = "title",
                 "Welcome to GermVersity"),
