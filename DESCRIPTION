@@ -43,7 +43,7 @@ Imports:
     golem (>= 0.3.2),
     shiny (>= 1.7.1),
     plotly, leaflet, factoextra, FactoMineR, shinydashboard, shinydashboardPlus, DT, randomForest, ggplot2, hierfstat, ape, poppr, pegas, vcfR,
-    RColorBrewer, readr, tidyverse, mice, imputeTS, knitr, rgl, caTools,
+    RColorBrewer, readr, tidyverse, mice, imputeTS, knitr, rgl, caTools, rworldxtra,
     randomForestExplainer, dplyr, ranger, vegan, pvclust, nnet, NeuralNetTools, tidyr, openxlsx, cluster,
     ggdendro, factoextra, foreach, gridExtra, caret, NbClust, dendextend, pals, expss, e1071, ROCR,
     pROC, aricode, dendextend, fpc, mclust, corrplot, scales, ggpubr, grDevices, adegenet, vcfR,
