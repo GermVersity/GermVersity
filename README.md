@@ -12,6 +12,7 @@ devtools::install_github("silkeszy/Pomona")
 ```
 
 ```
+## Require R >= 4.3.x
 devtools::install_github("jiabowang/GAPIT3",force=TRUE)
 ```
 
