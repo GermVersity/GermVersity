@@ -59,3 +59,9 @@ install.packages('/path/to/maptools', repos=NULL, type="source")
 ```
 devtools::install_github('GermVersity/GermVersity')
 ```
+
+* Fourth, run GermVersity
+
+```
+GermVersity::run_GermVersity()
+```
