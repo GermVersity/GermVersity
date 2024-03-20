@@ -42,6 +42,17 @@ BiocManager::install("snpStats")
 devtools::install_github("SFUStatgen/LDheatmap")
 ```
 
+* Install package maptools from https://cran.r-project.org/src/contrib/Archive/maptools/
+  * Download maptools 1.1-8.tar.gz
+  * Extract the files in a path
+  * Then follow the next instructions
+
+```
+## in console R execute the next code
+
+install.packages('/path/to/maptools', repos=NULL, type="source")
+```
+
 
 * Third, install GermVersity
 
