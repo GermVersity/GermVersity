@@ -29,6 +29,19 @@ if (!require("BiocManager", quietly = TRUE))
 
 BiocManager::install("qvalue")
 ```
+```
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("snpStats")
+```
+
+* Then install from github again
+
+```
+devtools::install_github("SFUStatgen/LDheatmap")
+```
+
 
 * Third, install GermVersity
 
